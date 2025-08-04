@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Training Access - Fast Lane Lead System</title>
+    <title>Fast Lane Lead System - Join The Community</title>
     <style>
         * {
             margin: 0;
@@ -16,65 +16,180 @@
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: white;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        /* Header */
-        .header {
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 8s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes backgroundPulse {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.1); }
+        }
+        
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 0.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 1.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 1; }
+            50% { transform: translateY(-10px) rotate(180deg); }
+        }
+        
+        /* Announcement Bar */
+        .announcement-bar {
             background: #00D4FF;
-            padding: 15px 0;
+            padding: 12px 0;
             text-align: center;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             color: #000;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Main Container */
-        .container {
-            max-width: 1000px;
+        .announcement-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
+            position: relative;
         }
         
-        /* Welcome Section */
-        .welcome {
-            margin-bottom: 60px;
-        }
-        
-        .welcome h1 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3.5rem;
             font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .welcome .highlight {
-            color: #00D4FF;
-        }
-        
-        .welcome p {
-            font-size: 1.2rem;
-            color: #ccc;
             margin-bottom: 30px;
-            max-width: 700px;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideInUp 1s ease-out 0.2s forwards;
+        }
+        
+        .hero h1 .highlight {
+            color: #00D4FF;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00D4FF, #0099CC);
+            animation: underlineExpand 1.5s ease-out 1.5s forwards;
+            border-radius: 2px;
+        }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes underlineExpand {
+            to {
+                width: 100%;
+            }
+        }
+        
+        .hero .subtext {
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            color: #ccc;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 1s ease-out 0.6s forwards;
         }
         
-        /* Full Video Section */
-        .video-section {
-            margin-bottom: 80px;
-        }
-        
+        /* Video Section */
         .video-container {
             max-width: 900px;
             margin: 0 auto 40px;
             background: #000;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
             position: relative;
             border: 2px solid #00D4FF;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleIn 1s ease-out 1s forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .video-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 80px rgba(0, 212, 255, 0.4);
+        }
+        
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         
         .video-placeholder {
@@ -84,6 +199,35 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: videoShine 4s infinite;
+        }
+        
+        @keyframes videoShine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00D4FF;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
         
         .play-button {
@@ -97,10 +241,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            position: relative;
+            z-index: 2;
         }
         
         .play-button:hover {
             transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
         }
         
         @keyframes pulse {
@@ -116,136 +263,350 @@
             border-top: 20px solid transparent;
             border-bottom: 20px solid transparent;
             margin-left: 8px;
-        }
-        
-        .video-duration {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #00D4FF;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        /* Context Section */
-        .context {
-            background: #1a1a1a;
-            border: 2px solid #00D4FF;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 80px;
-            text-align: left;
-        }
-        
-        .context h3 {
-            color: #00D4FF;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .context p {
-            color: #ccc;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .context .highlight-text {
-            background: rgba(0, 212, 255, 0.1);
-            border-left: 4px solid #00D4FF;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
-        }
-        
-        .context .highlight-text p {
-            color: #fff;
-            font-weight: 600;
-            text-align: left;
-            margin: 0;
-        }
-        
-        /* Testimonials Section */
-        .testimonials {
-            margin-bottom: 80px;
-        }
-        
-        .testimonials h2 {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
-        .testimonials h2 .highlight {
-            color: #00D4FF;
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .testimonial-card {
-            background: #1a1a1a;
-            border: 2px solid #00D4FF;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
             transition: all 0.3s ease;
         }
         
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        .play-button:hover::after {
+            border-left-color: #00D4FF;
         }
         
-        .cash-amount {
-            font-size: 2.5rem;
-            font-weight: bold;
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             color: #00D4FF;
-            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.8s ease-out forwards;
+            transition: all 0.3s ease;
         }
         
-        .testimonial-quote {
+        .feature:nth-child(1) { animation-delay: 1.2s; }
+        .feature:nth-child(2) { animation-delay: 1.4s; }
+        .feature:nth-child(3) { animation-delay: 1.6s; }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            background: #00D4FF;
+            color: #000;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 1.8s forwards;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:active {
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 2s forwards;
+        }
+        
+        .avatars {
+            display: flex;
+            margin-right: 10px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #00D4FF;
+            border: 2px solid #fff;
+            margin-left: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            transition: all 0.3s ease;
+            animation: avatarBounce 3s infinite;
+        }
+        
+        .avatar:nth-child(1) { animation-delay: 0s; }
+        .avatar:nth-child(2) { animation-delay: 0.2s; }
+        .avatar:nth-child(3) { animation-delay: 0.4s; }
+        .avatar:nth-child(4) { animation-delay: 0.6s; }
+        .avatar:nth-child(5) { animation-delay: 0.8s; }
+        
+        .avatar:first-child {
+            margin-left: 0;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.2) translateY(-5px);
+            z-index: 10;
+        }
+        
+        @keyframes avatarBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .social-text {
             color: #ccc;
-            margin-bottom: 20px;
-            font-style: italic;
-            line-height: 1.5;
+            font-weight: 600;
         }
         
-        .testimonial-name {
-            font-weight: bold;
-            color: #fff;
+        /* Section Headers */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
         }
         
-        .testimonial-proof {
-            background: #0a0a0a;
-            border: 1px dashed #00D4FF;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            color: #00D4FF;
-            font-size: 0.9rem;
-        }
-        
-        /* Community Teaser */
-        .community-teaser {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border: 2px solid #00D4FF;
-            border-radius: 20px;
-            padding: 50px;
+        .section h2 {
+            font-size: 2.5rem;
             margin-bottom: 60px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section h2.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section h2 .highlight {
+            color: #00D4FF;
+            position: relative;
+        }
+        
+        .section h2 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00D4FF;
+            transition: width 1s ease 0.5s;
+        }
+        
+        .section h2.animate .highlight::after {
+            width: 100%;
+        }
+        
+        /* Transformation Section */
+        .transformation {
+            background: #0a0a0a;
+            position: relative;
+        }
+        
+        .transformation::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .transformation-side {
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .transformation-side.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .transformation-side:nth-child(2) {
+            transform: translateX(50px);
+        }
+        
+        .transformation-side:nth-child(2).animate {
+            transform: translateX(0);
+        }
+        
+        .transformation-side h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .before h3 {
+            color: #ff4757;
+        }
+        
+        .after h3 {
+            color: #00D4FF;
+        }
+        
+        .status-box {
+            background: #1a1a1a;
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 2px solid;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .community-teaser::before {
+        .status-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .status-box:hover::before {
+            left: 100%;
+        }
+        
+        .before .status-box {
+            border-color: #ff4757;
+        }
+        
+        .after .status-box {
+            border-color: #00D4FF;
+        }
+        
+        .status-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .status-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .status-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+        
+        .status-list li:nth-child(1) { animation-delay: 0.1s; }
+        .status-list li:nth-child(2) { animation-delay: 0.2s; }
+        .status-list li:nth-child(3) { animation-delay: 0.3s; }
+        .status-list li:nth-child(4) { animation-delay: 0.4s; }
+        .status-list li:nth-child(5) { animation-delay: 0.5s; }
+        .status-list li:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .before .status-list li::before {
+            content: '❌';
+            position: absolute;
+            left: 0;
+        }
+        
+        .after .status-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Wins Screenshots Section */
+        .wins-screenshots {
+            background: #0a0a0a;
+            position: relative;
+        }
+        
+        .wins-screenshots::before {
             content: '';
             position: absolute;
             top: 0;
@@ -256,244 +617,724 @@
             pointer-events: none;
         }
         
-        .community-teaser h3 {
+        .wins-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+        
+        .wins-intro p {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-style: italic;
+        }
+        
+        .wins-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+        
+        .win-screenshot {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .win-screenshot.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+        
+        .win-screenshot:nth-child(1) { transition-delay: 0.1s; }
+        .win-screenshot:nth-child(2) { transition-delay: 0.2s; }
+        .win-screenshot:nth-child(3) { transition-delay: 0.3s; }
+        .win-screenshot:nth-child(4) { transition-delay: 0.4s; }
+        
+        .screenshot-placeholder {
+            background: #1a1a1a;
+            border: 2px solid #00D4FF;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .screenshot-placeholder:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+        
+        .screenshot-header {
+            background: linear-gradient(135deg, #00D4FF, #0099CC);
+            color: #000;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .screenshot-header .amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .screenshot-header .timeframe {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .screenshot-content {
+            padding: 25px;
+        }
+        
+        .screenshot-content h4 {
+            color: #00D4FF;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .screenshot-content p {
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .screenshot-image {
+            background: #0a0a0a;
+            border: 1px dashed #00D4FF;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #00D4FF;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .screenshot-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00D4FF;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: screenshotPulse 2s infinite;
+        }
+        
+        @keyframes screenshotPulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        .wins-callout {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border: 2px solid #00D4FF;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .wins-callout p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        .wins-callout strong {
+            color: #00D4FF;
+        }
+        
+        /* Popup Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .popup-overlay.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .popup-content {
+            background: #1a1a1a;
+            border: 2px solid #00D4FF;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideInUp 0.3s ease;
+        }
+        
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .popup-close:hover {
+            color: #00D4FF;
+        }
+        
+        .popup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .popup-header h3 {
             color: #00D4FF;
             font-size: 1.8rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 10px;
         }
         
-        .community-teaser p {
+        .popup-header p {
             color: #ccc;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            font-size: 1rem;
         }
         
-        .saturday-badge {
+        .popup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: #ccc;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            background: #0a0a0a;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #00D4FF;
+        }
+        
+        .form-group input::placeholder {
+            color: #666;
+        }
+        
+        .popup-submit {
             background: #00D4FF;
             color: #000;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 20px 0;
-            animation: glow 2s infinite alternate;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
-            to { box-shadow: 0 0 20px rgba(0, 212, 255, 0.8); }
-        }
-        
-        /* Final CTA */
-        .final-cta {
-            text-align: center;
-        }
-        
-        .cta-button {
-            background: #00D4FF;
-            color: #000;
-            padding: 20px 50px;
-            font-size: 1.4rem;
+            padding: 15px 30px;
+            font-size: 1.2rem;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
+            margin-top: 10px;
         }
         
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        .popup-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
         }
         
-        .cta-subtext {
-            color: #999;
+        .popup-note {
+            text-align: center;
+            margin-top: 20px;
             font-size: 0.9rem;
-            margin-top: 15px;
+            color: #999;
+        }
+        
+        /* Final Callout */
+        .final-callout {
+            background: #0a0a0a;
+            text-align: center;
+        }
+        
+        .callout-box {
+            background: #1a1a1a;
+            border: 2px solid #00D4FF;
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .callout-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.05), transparent, rgba(0, 212, 255, 0.05));
+            animation: calloutShine 4s ease-in-out infinite;
+        }
+        
+        @keyframes calloutShine {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        .callout-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .callout-text {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .welcome h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .testimonials-grid {
+            .features {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .transformation-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .container {
+            .transformation-side {
+                transform: translateY(50px);
+            }
+            
+            .transformation-side.animate {
+                transform: translateY(0);
+            }
+            
+            .wins-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .screenshot-header {
+                padding: 15px;
+            }
+            
+            .screenshot-header .amount {
+                font-size: 1.5rem;
+            }
+            
+            .screenshot-content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .callout-box {
                 padding: 40px 20px;
             }
             
-            .context,
-            .community-teaser {
-                padding: 30px 20px;
+            .particle {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        🎉 CONGRATULATIONS - You're In! Watch Your Exclusive Training Below
+    <!-- Floating Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Welcome Section -->
-        <div class="welcome">
-            <h1>
-                Here's The <span class="highlight">Complete System</span> That's Changing Everything
-            </h1>
-            <p>
-                You're about to see the exact method I use to generate 6-figures monthly without cold calling, paid ads, or chasing prospects. This is the full training - no fluff, no filler, just the real system.
-            </p>
-        </div>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🔥 Join the entrepreneurs who chose to stop struggling and start winning
+    </div>
 
-        <!-- Full Video Section -->
-        <div class="video-section">
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <div class="video-duration">42 min full training</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>
+            This Will <span class="highlight">Change Your Lead Generation Forever</span> (And My Competitors Won't Be Happy About It)
+        </h1>
+        
+        <p class="subtext">
+            Hey, I'm about to share the exact system that took my company from an empty pipeline to 6-figures monthly. I've never shared this publicly before... but I'm tired of seeing good entrepreneurs struggle with the same problems I had 18 months ago.
+        </p>
+        
+        <div class="video-container">
+            <div class="video-placeholder">
+                <div class="play-button" onclick="playTrailer()"></div>
+                <div class="video-overlay">
+                    <span class="video-duration">5 sec trailer</span>
                 </div>
             </div>
         </div>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>The Exact System I Use Daily</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Never Shared Publicly Before</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>Students Getting Results in Days</span>
+            </div>
+        </div>
+        
+        <a href="#" class="cta-button" onclick="openPopup()">I Want In - Show Me The System</a>
+        
+        <div class="social-proof">
+            <div class="avatars">
+                <div class="avatar">J</div>
+                <div class="avatar">M</div>
+                <div class="avatar">S</div>
+                <div class="avatar">A</div>
+                <div class="avatar">+</div>
+            </div>
+            <span class="social-text">2,847+ entrepreneurs already getting results</span>
+        </div>
+    </section>
 
-        <!-- Context Section -->
-        <div class="context">
-            <h3>🎯 Important: This Is Just The Beginning</h3>
-            <p>
-                The lead generation problem you just learned to solve is just <strong>1 of the many problems we help</strong> entrepreneurs overcome in our exclusive community.
-            </p>
-            
-            <div class="highlight-text">
-                <p>
-                    <strong>What you just watched</strong> = The foundation that gets your pipeline filled<br>
-                    <strong>What's inside our community</strong> = Complete business transformation systems
-                </p>
+    <!-- Transformation Section -->
+    <section class="section transformation">
+        <h2 class="fade-in">From Empty Pipeline to <span class="highlight">Consistent 6-Figures</span></h2>
+        
+        <div class="transformation-grid">
+            <div class="transformation-side before fade-in">
+                <h3>18 Months Ago (Me)</h3>
+                <div class="status-box">
+                    <ul class="status-list">
+                        <li>Staring at empty calendar at 2 AM</li>
+                        <li>Couldn't look my wife in the eyes</li>
+                        <li>Cold calling until my throat was raw</li>
+                        <li>Facebook ads barely breaking even</li>
+                        <li>Posted on LinkedIn hoping someone would notice</li>
+                        <li>Business going nowhere fast</li>
+                    </ul>
+                </div>
             </div>
             
-            <p>
-                We cover everything from lead generation to high-ticket closing, team building, scaling systems, and profit optimization. This training was just a taste of what's possible.
-            </p>
-        </div>
-
-        <!-- More Cash Collected Testimonials -->
-        <div class="testimonials">
-            <h2>More <span class="highlight">Cash Collected</span> This Week</h2>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="cash-amount">$23,500</div>
-                    <div class="testimonial-quote">
-                        "Implemented the system from the training 3 days ago. Just collected $23,500 from 2 new clients who found ME through the interceptor method. This is insane."
-                    </div>
-                    <div class="testimonial-name">- Michael R., Business Coach</div>
-                    <div class="testimonial-proof">📱 Payment Screenshot Verified</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="cash-amount">$31,000</div>
-                    <div class="testimonial-quote">
-                        "I was skeptical about 'another system' but this actually works. $31K in cash collected in my first 10 days. My biggest month ever, and I'm just getting started."
-                    </div>
-                    <div class="testimonial-name">- Lisa T., Marketing Consultant</div>
-                    <div class="testimonial-proof">💳 Stripe Dashboard Screenshot</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="cash-amount">$28,750</div>
-                    <div class="testimonial-quote">
-                        "The authority amplifier strategy is pure gold. Prospects are literally chasing me now. $28,750 collected this week alone. Best investment I've ever made."
-                    </div>
-                    <div class="testimonial-name">- David K., Sales Trainer</div>
-                    <div class="testimonial-proof">🏦 Bank Statement Verified</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="cash-amount">$19,200</div>
-                    <div class="testimonial-quote">
-                        "Finally replaced my corporate salary. $19,200 in new business this week using the exact framework from the training. My wife can't believe the transformation."
-                    </div>
-                    <div class="testimonial-name">- Amanda S., Business Consultant</div>
-                    <div class="testimonial-proof">📊 Revenue Dashboard Screenshot</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="cash-amount">$42,000</div>
-                    <div class="testimonial-quote">
-                        "This system is the real deal. $42K in cash collected in 8 days. The community support made all the difference. These people are serious about winning."
-                    </div>
-                    <div class="testimonial-name">- Robert F., Marketing Agency</div>
-                    <div class="testimonial-proof">💰 Payment Gateway Screenshot</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="cash-amount">$16,800</div>
-                    <div class="testimonial-quote">
-                        "Joined 5 days ago, implemented immediately. $16,800 in new business already. The systematic approach eliminates all the guesswork. Pure genius."
-                    </div>
-                    <div class="testimonial-name">- Karen M., Business Coach</div>
-                    <div class="testimonial-proof">📱 Payment App Screenshot</div>
+            <div class="transformation-side after fade-in">
+                <h3>Today (Me & My Students)</h3>
+                <div class="status-box">
+                    <ul class="status-list">
+                        <li>$187K last month, $203K month before</li>
+                        <li>15-20 qualified calls per week (on autopilot)</li>
+                        <li>Prospects chasing ME, not the other way around</li>
+                        <li>Working less hours than when I made nothing</li>
+                        <li>Students getting results in days, not months</li>
+                        <li>Finally have the freedom I always wanted</li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Community Teaser -->
-        <div class="community-teaser">
-            <h3>🚀 Exclusive Community Announcement</h3>
-            <p>
-                You're watching this training at the perfect time. This Saturday, I'm dropping another free breakdown inside our exclusive community - this time covering the "High-Ticket Closing Psychology" that turns leads into $10K+ deals.
-            </p>
-            
-            <div class="saturday-badge">
-                Dropping This Saturday 🔥
+    <!-- Wins Screenshots Section -->
+    <section class="section wins-screenshots">
+        <h2 class="fade-in">I Know This Sounds <span class="highlight">"Too Good to Be True"</span> So Here's Proof</h2>
+        
+        <div class="wins-intro fade-in">
+            <p>Look, I get it. Another "guru" promising easy results. But these are real screenshots from real students who implemented this exact system...</p>
+        </div>
+        
+        <div class="wins-gallery">
+            <div class="win-screenshot fade-in">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-header">
+                        <span class="amount">$15,500</span>
+                        <span class="timeframe">12 Days</span>
+                    </div>
+                    <div class="screenshot-content">
+                        <h4>Elias</h4>
+                        <p>Was stuck at $0-3K/mo just 2 months ago. Brand new offer, starting from scratch.</p>
+                        <div class="screenshot-image">📱 Payment Screenshot</div>
+                    </div>
+                </div>
             </div>
             
-            <p>
-                <strong>Plus, you'll get access to:</strong><br>
-                • Daily case studies from members closing deals<br>
-                • Weekly live Q&A sessions with me personally<br>
-                • Private mastermind calls<br>
-                • Done-for-you templates and scripts<br>
-                • Direct access to entrepreneurs getting real results
-            </p>
-        </div>
-
-        <!-- Final CTA -->
-        <div class="final-cta">
-            <h2>Ready to Join The Winners?</h2>
-            <p style="color: #ccc; margin-bottom: 40px; font-size: 1.1rem;">
-                The training you just watched is powerful, but it's just the beginning. Join our exclusive community to get the complete transformation system and be part of the Saturday breakdown.
-            </p>
+            <div class="win-screenshot fade-in">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-header">
+                        <span class="amount">$18,000</span>
+                        <span class="timeframe">1 Day</span>
+                    </div>
+                    <div class="screenshot-content">
+                        <h4>Andro</h4>
+                        <p>Marketing agency owner. Couldn't get clarity on his offer 1 month ago. Now working less than before.</p>
+                        <div class="screenshot-image">💳 Stripe Dashboard</div>
+                    </div>
+                </div>
+            </div>
             
-            <a href="https://www.skool.com/fastlanein-8748/about" class="cta-button">Join The Community Now</a>
-            <div class="cta-subtext">2,847+ entrepreneurs already transforming their businesses</div>
+            <div class="win-screenshot fade-in">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-header">
+                        <span class="amount">$12,000</span>
+                        <span class="timeframe">2 Days</span>
+                    </div>
+                    <div class="screenshot-content">
+                        <h4>Max</h4>
+                        <p>Brand new B2B lead-gen offer. Built it on day 1, started lead-gen, collected $12K in 48 hours.</p>
+                        <div class="screenshot-image">📊 Bank Statement</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="win-screenshot fade-in">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-header">
+                        <span class="amount">$47,000</span>
+                        <span class="timeframe">8 Weeks</span>
+                    </div>
+                    <div class="screenshot-content">
+                        <h4>Sarah</h4>
+                        <p>Business consultant. Went from zero leads to $47K in new business. "I was skeptical at first..."</p>
+                        <div class="screenshot-image">💰 Revenue Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wins-callout fade-in">
+            <p><strong>These aren't lucky flukes.</strong> This is a system. And I'm about to show you exactly how it works inside the community.</p>
+        </div>
+    </section>
+
+    <!-- Final Callout -->
+    <section class="section final-callout">
+        <div class="callout-box fade-in">
+            <div class="callout-quote">
+                "Look, I remember what it felt like to have an empty pipeline. The stress, the uncertainty, not being able to look my wife in the eyes when she asked how business was going."
+            </div>
+            
+            <div class="callout-text">
+                I don't want you to go through that anymore. That's why I created this community.
+                <br><br>
+                If you made it this far, you're serious about changing your situation. <strong>I respect that. And I want to help you win.</strong>
+            </div>
+            
+            <a href="#" class="cta-button" onclick="openPopup()">I Want In - Show Me The System</a>
+        </div>
+    </section>
+
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div class="popup-header">
+                <h3>Get Instant Access</h3>
+                <p>Enter your details below to watch the full training that's changing everything for entrepreneurs</p>
+            </div>
+            <form class="popup-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number *</label>
+                    <input type="tel" id="whatsapp" placeholder="+1 (555) 123-4567" required>
+                </div>
+                <button type="submit" class="popup-submit">Give Me Access Now</button>
+                <div class="popup-note">
+                    We respect your privacy. Your information is 100% secure.
+                </div>
+            </form>
         </div>
     </div>
 
     <script>
-        // Video play button interaction
-        document.querySelector('.play-button').addEventListener('click', function() {
-            this.style.transform = 'scale(1.2)';
-            this.innerHTML = '⏸️';
+        // Popup Functions
+        function openPopup() {
+            document.getElementById('popup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
             
-            // Simulate video playing
+            // Get form data
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            
+            // Here you would typically send this data to your backend
+            console.log('Form submitted:', { name, email, whatsapp });
+            
+            // Close popup and redirect to training page
+            closePopup();
+            
+            // Redirect to training page (replace with your actual training page URL)
+            window.open('training-access.html', '_blank');
+        }
+        
+        // Trailer Video Function
+        function playTrailer() {
+            // Simulate 5-second trailer play
+            const playButton = document.querySelector('.play-button');
+            playButton.style.transform = 'scale(1.2)';
+            playButton.innerHTML = '⏸️';
+            
             setTimeout(() => {
-                this.style.transform = 'scale(1)';
-                this.innerHTML = '';
-            }, 1000);
+                playButton.style.transform = 'scale(1)';
+                playButton.innerHTML = '';
+                
+                // After trailer ends, show access popup
+                setTimeout(() => {
+                    openPopup();
+                }, 500);
+            }, 5000);
+        }
+        
+        // Close popup when clicking outside
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+        
+        // Original intersection observer and other scripts
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click animation to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.onclick) return; // Skip if has onclick handler
+                
+                let ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.background = 'rgba(255,255,255,0.6)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = (e.clientX - e.target.offsetLeft) + 'px';
+                ripple.style.top = (e.clientY - e.target.offsetTop) + 'px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add parallax effect to background elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            document.body.style.backgroundPosition = `0 ${rate}px`;
         });
     </script>
 
