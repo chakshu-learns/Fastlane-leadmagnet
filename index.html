@@ -1253,20 +1253,8 @@
         
         // Trailer Video Function
         function playTrailer() {
-            // Simulate 5-second trailer play
-            const playButton = document.querySelector('.play-button');
-            playButton.style.transform = 'scale(1.2)';
-            playButton.innerHTML = '⏸️';
-            
-            setTimeout(() => {
-                playButton.style.transform = 'scale(1)';
-                playButton.innerHTML = '';
-                
-                // After trailer ends, show access popup
-                setTimeout(() => {
-                    openPopup();
-                }, 500);
-            }, 5000);
+            // Direct popup open when play button is clicked
+            openPopup();
         }
         
         // Close popup when clicking outside
