@@ -489,7 +489,34 @@
     </div>
 
     <script>
-        // No video interaction needed - YouTube handles playback
+        // Function to load video if iframe fails
+        function loadVideo() {
+            const iframe = document.getElementById('youtube-video');
+            iframe.src = "https://www.youtube.com/embed/MrFg8NaCFIw?autoplay=1&mute=0&controls=1&rel=0";
+            document.querySelector('.video-fallback').style.display = 'none';
+            iframe.style.display = 'block';
+        }
+        
+        // Check if video loads properly
+        window.addEventListener('load', function() {
+            const iframe = document.getElementById('youtube-video');
+            const fallback = document.querySelector('.video-fallback');
+            
+            // If iframe doesn't load after 3 seconds, show fallback
+            setTimeout(function() {
+                if (iframe.offsetHeight === 0) {
+                    console.log('YouTube iframe not loading, showing fallback');
+                    fallback.style.display = 'flex';
+                    iframe.style.display = 'none';
+                }
+            }, 3000);
+            
+            // Try alternative embed if first one fails
+            iframe.onerror = function() {
+                console.log('Primary embed failed, trying alternative');
+                iframe.src = "https://www.youtube-nocookie.com/embed/MrFg8NaCFIw?autoplay=1&controls=1&rel=0";
+            };
+        });
     </script>
 
 </body>
